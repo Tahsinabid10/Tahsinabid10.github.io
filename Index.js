@@ -146,9 +146,36 @@ links.map((link) => {
   });
 });
 
+// Get all images with the "lightbox" class
+var images = document.querySelectorAll('.lightbox');
+
+// Loop through each image and add a click event listener
+images.forEach(function(image) {
+    image.addEventListener('click', function() {
+        // Create the lightbox overlay element
+        var lightbox = document.createElement('div');
+        lightbox.setAttribute('id', 'lightbox');
+
+        // Create the larger image element
+        var largerImage = document.createElement('img');
+        largerImage.setAttribute('src', this.src);
+
+        // Add the larger image to the lightbox overlay
+        lightbox.appendChild(largerImage);
+
+        // Add the lightbox overlay to the page
+        document.body.appendChild(lightbox);
+
+        // Add a click event listener to the lightbox overlay
+        lightbox.addEventListener('click', function() {
+            // Remove the lightbox overlay from the page
+            document.body.removeChild(lightbox);
+        });
+    });
+});
 
 
 
 
-  
+
 AOS.init()
